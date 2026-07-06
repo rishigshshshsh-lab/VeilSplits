@@ -151,12 +151,12 @@ Verifies UI stability and react state logic in `src/tests/split.test.tsx`:
 
 3. **Test Output (3+ passing tests)**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![cargo test output]
+   ![cargo test output] ![alt text](image-1.png)
 
 4. **Successful On-Chain Bill Splitting Process Complete**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![Successful On-Chain Bill Splitting Process Complete]
+   ![Successful On-Chain Bill Splitting Process Complete] ![alt text](image-2.png)
 
 5. **Stellar.expert Contract Call Verification**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![Stellar.expert Contract Call Verification]
+   ![Stellar.expert Contract Call Verification] ![alt text](image-3.png)
