@@ -9,19 +9,21 @@ if (typeof window !== 'undefined') {
 import { Horizon, rpc, TransactionBuilder, Operation, Asset, StrKey, Contract, nativeToScVal, scValToNative, Account } from '@stellar/stellar-sdk';
 import { StellarWalletsKit, Networks } from '@creit.tech/stellar-wallets-kit';
 import { defaultModules } from '@creit.tech/stellar-wallets-kit/modules/utils';
+import contracts from '../contracts.json';
 
-const HORIZON_URL = 'https://horizon-testnet.stellar.org';
+const HORIZON_URL = import.meta.env.VITE_HORIZON_URL || 'https://horizon-testnet.stellar.org';
 export const server = new Horizon.Server(HORIZON_URL);
 
 // Soroban RPC server for Testnet
-const SOROBAN_RPC_URL = 'https://soroban-testnet.stellar.org';
+const SOROBAN_RPC_URL = import.meta.env.VITE_SOROBAN_RPC_URL || 'https://soroban-testnet.stellar.org';
 export const rpcServer = new rpc.Server(SOROBAN_RPC_URL);
 
-// Deployed Smart Contract ID on Testnet
-export const CONTRACT_ID = 'CBUWAF5KWSTDVIGR2SW4KX5KQ44ESSLHFIQTZM5N4HYHHMZ7RF7IVBM4';
+// Deployed Smart Contract IDs
+export const CONTRACT_ID = import.meta.env.VITE_CONTRACT_ID || contracts.splitBillRegistry;
+export const NOTIFIER_CONTRACT_ID = import.meta.env.VITE_NOTIFIER_CONTRACT_ID || contracts.splitNotifier;
 
 // Configure network passphrase for Testnet
-export const NETWORK_PASSPHRASE = 'Test SDF Network ; September 2015';
+export const NETWORK_PASSPHRASE = import.meta.env.VITE_NETWORK_PASSPHRASE || 'Test SDF Network ; September 2015';
 
 // Initialize StellarWalletsKit once globally
 if (typeof window !== 'undefined') {
@@ -149,7 +151,7 @@ export const executeContractCall = async (
       tx = await rpcServer.prepareTransaction(tx);
     } catch (simErr: any) {
       console.error('Simulation/Preparation failed:', simErr);
-      throw new Error(simErr.message || 'Simulation of contract invocation failed.');
+      throw new Error(`SimulationError: ${simErr.message || 'Simulation of contract invocation failed.'}`);
     }
 
     // 4. Request signature from the wallet
@@ -188,7 +190,7 @@ export const executeContractCall = async (
       attempts++;
     }
 
-    throw new Error('Transaction execution timed out while waiting for ledger inclusion.');
+    throw new Error('TimeoutError: Transaction execution timed out while waiting for ledger inclusion.');
   } catch (err: any) {
     console.error(`executeContractCall (${method}) failed:`, err);
     const errMsg = err.message || err.toString() || 'Contract invocation failed.';
@@ -220,9 +222,102 @@ export const getSplitStatusOnChain = async (
     if (rpc.Api.isSimulationSuccess(sim) && sim.result) {
       return scValToNative(sim.result.retval);
     }
-    return null;
-  } catch (err) {
+    throw new Error('SimulationError: Split bill does not exist or simulation failed.');
+  } catch (err: any) {
     console.error('getSplitStatusOnChain error:', err);
+    throw err;
+  }
+};
+
+export interface SorobanEvent {
+  id: string;
+  type: 'split_created' | 'payment_marked' | 'notify_completed' | 'split_cancelled' | 'participant_added';
+  billId: string;
+  topic: string[];
+  value: any;
+  txHash: string;
+  pagingToken: string;
+}
+
+export const parseSorobanEvent = (event: any): SorobanEvent | null => {
+  try {
+    const topicRaw = event.topic || [];
+    if (topicRaw.length === 0) return null;
+    
+    const eventNameVal = topicRaw[0];
+    const eventName = scValToNative(eventNameVal);
+    
+    let billId = '';
+    if (topicRaw.length > 1) {
+      billId = scValToNative(topicRaw[1]);
+    }
+    
+    const value = event.value ? scValToNative(event.value) : null;
+    
+    return {
+      id: event.id,
+      type: eventName as any,
+      billId,
+      topic: topicRaw.map((t: any) => scValToNative(t).toString()),
+      value,
+      txHash: event.txHash,
+      pagingToken: event.pagingToken || event.id,
+    };
+  } catch (e) {
+    console.error('Error parsing event:', e);
     return null;
+  }
+};
+
+/**
+ * Fetches recent events from both the split bill registry and split notifier contracts.
+ */
+export const getRecentEvents = async (
+  startLedger?: number,
+  cursor?: string
+): Promise<{ events: SorobanEvent[]; latestLedger: number; cursor?: string }> => {
+  try {
+    const latest = await rpcServer.getLatestLedger();
+    const finalStartLedger = startLedger || (latest.sequence - 3000);
+    
+    // Type-safe event queries to prevent mixing startLedger and cursor
+    const requestParams = cursor 
+      ? {
+          filters: [
+            {
+              type: 'contract' as const,
+              contractIds: [CONTRACT_ID, NOTIFIER_CONTRACT_ID],
+            },
+          ],
+          limit: 100,
+          cursor,
+        }
+      : {
+          startLedger: finalStartLedger,
+          filters: [
+            {
+              type: 'contract' as const,
+              contractIds: [CONTRACT_ID, NOTIFIER_CONTRACT_ID],
+            },
+          ],
+          limit: 100,
+        };
+
+    const response = await rpcServer.getEvents(requestParams);
+    
+    const parsedEvents = (response.events || [])
+      .map(parseSorobanEvent)
+      .filter((ev): ev is SorobanEvent => ev !== null);
+      
+    const nextCursor = response.cursor || cursor;
+
+    return {
+      events: parsedEvents,
+      latestLedger: latest.sequence,
+      cursor: nextCursor,
+    };
+  } catch (err: any) {
+    console.error('getRecentEvents error:', err);
+    throw err;
   }
 };
