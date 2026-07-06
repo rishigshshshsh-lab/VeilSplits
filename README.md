@@ -143,20 +143,20 @@ Verifies UI stability and react state logic in `src/tests/split.test.tsx`:
 
 1. **Mobile Responsive UI**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![Mobile responsive view]![alt text](image-8.png)
+   ![Mobile responsive view](./image-8.png)
 
 2. **CI/CD Pipeline Running (Passing)**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![CI Pipeline Passing]![alt text](image-9.png)
+   ![CI Pipeline Passing](./image-9.png)
 
 3. **Test Output (3+ passing tests)**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![cargo test output]![alt text](image-1.png)
-`
+   ![cargo test output](./image-1.png)
+
 4. **Successful On-Chain Bill Splitting Process Complete**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![Successful On-Chain Bill Splitting Process Complete]![alt text](image-2.png)
+   ![Successful On-Chain Bill Splitting Process Complete](./image-2.png)
 
 5. **Stellar.expert Contract Call Verification**:
    <!-- PASTE SCREENSHOT HERE -->
-   ![Stellar.expert Contract Call Verification]![alt text](image-3.png)
+   ![Stellar.expert Contract Call Verification](./image-3.png)
