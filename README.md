@@ -52,22 +52,25 @@ New Stellar Testnet accounts must be funded before they can hold balances or exe
 3. Paste your public address in the text field and click **Get Test Network Lumens**.
 4. Refresh your balance inside the Split Bill dApp.
 
-## Screenshots
+## Screenshots & Explorer Transactions
 
-Below are placeholders for the interface screenshots showing various dApp states:
+Here are the visual representations of the application flow and live Stellar Testnet transactions:
 
 1. **Wallet Connected State**
-   ![Wallet connected state](https://via.placeholder.com/800x450/1e1b4b/ffffff?text=1.+Wallet+Connected+State)
+   ![Wallet Connected State](./image.png)
 
 2. **Balance Displayed**
-   ![Balance displayed](https://via.placeholder.com/800x450/1e1b4b/ffffff?text=2.+Balance+Displayed)
+   ![Balance Displayed](./image-1.png)
 
 3. **Successful Testnet Transaction**
-   ![Successful testnet transaction](https://via.placeholder.com/800x450/1e1b4b/ffffff?text=3.+Successful+Testnet+Transaction)
+   ![Successful Testnet Transaction](./image-3.png)
 
 4. **Transaction Result Shown to User**
-   ![Transaction result shown to user](https://via.placeholder.com/800x450/1e1b4b/ffffff?text=4.+Transaction+Result+Shown+to+User)
+   ![Transaction Result Shown to User](./image-2.png)
 
+5. **Live Stellar Testnet Transactions on Stellar.expert**
+   - **Transaction 1**: [c11c8400...acd84c](https://stellar.expert/explorer/testnet/tx/c11c8400251c22e71db69071924186e99aa30b7843a4c1e92994c5a367acd84c)
+   - **Transaction 2**: [d714ea3e...0e8fa](https://stellar.expert/explorer/testnet/tx/d714ea3ed3a8b1b1ae8ca1bb68e75e7b5970c09d5aca615745bf37159c08e8fa)
 ## How to Use
 
 1. **Connect Wallet**: Click the **Connect Wallet** button in the header. Authorize the Freighter popup connection request.
