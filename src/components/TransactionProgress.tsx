@@ -33,6 +33,54 @@ const CopyHashButton: React.FC<{ hash: string }> = ({ hash }) => {
   );
 };
 
+export const ContractCallErrorDisplay: React.FC<{ error: string }> = ({ error }) => {
+  const isSimulationError = error.includes('SimulationError') || error.includes('Simulation');
+  const isTimeoutError = error.includes('TimeoutError') || error.includes('Timeout');
+
+  return (
+    <div className="alert alert-error" style={{ margin: '1rem 0 0 0', display: 'block', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
+      <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.25rem', color: '#fca5a5' }}>
+        {isSimulationError ? 'Smart Contract Simulation Failed' : isTimeoutError ? 'Soroban RPC Network Timeout' : 'Smart Contract Execution Error'}
+      </div>
+      <p style={{ fontSize: '0.85rem', lineHeight: '1.4', margin: 0, color: 'var(--text-secondary)' }}>
+        {isSimulationError 
+          ? 'The smart contract call failed simulation. This usually indicates invalid input parameters, non-existent split ID, or insufficient privileges.' 
+          : isTimeoutError 
+            ? 'The transaction was submitted but the RPC server timed out waiting for confirmation. It may still be included in a future block. Check the activity feed.' 
+            : 'The contract call failed to execute. Ensure you have supported network status.'}
+      </p>
+      <div style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.4)', marginTop: '0.5rem', fontFamily: 'var(--font-mono)', wordBreak: 'break-all' }}>
+        Details: {error}
+      </div>
+    </div>
+  );
+};
+
+export const CompactErrorDisplay: React.FC<{ error: string }> = ({ error }) => {
+  const isSimulationError = error.includes('SimulationError') || error.includes('Simulation');
+  const isTimeoutError = error.includes('TimeoutError') || error.includes('Timeout');
+
+  return (
+    <div style={{ 
+      background: 'rgba(239, 68, 68, 0.08)', 
+      border: '1px solid rgba(239, 68, 68, 0.2)', 
+      padding: '0.5rem', 
+      borderRadius: '0.5rem',
+      color: '#fca5a5',
+      fontSize: '0.75rem',
+      marginTop: '0.25rem',
+      maxWidth: '220px',
+      wordBreak: 'break-word',
+      textAlign: 'left'
+    }}>
+      <strong style={{ display: 'block', color: '#f87171' }}>
+        {isSimulationError ? 'Sim Fail' : isTimeoutError ? 'RPC Timeout' : 'Fail'}
+      </strong>
+      <span style={{ opacity: 0.8 }}>{error.replace('SimulationError: ', '').replace('TimeoutError: ', '')}</span>
+    </div>
+  );
+};
+
 export interface ContractCallStatus {
   status: 'idle' | 'pending' | 'submitted' | 'success' | 'failed';
   txHash?: string;
@@ -193,9 +241,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
           </div>
         )}
         {createSplit.error && (
-          <div style={{ color: 'var(--error)', fontSize: '0.8rem', marginTop: '0.5rem', wordBreak: 'break-all' }}>
-            Error: {createSplit.error}
-          </div>
+          <ContractCallErrorDisplay error={createSplit.error} />
         )}
       </div>
 
@@ -214,7 +260,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
           <tbody>
             {participants.map((participant, index) => (
               <tr key={index} style={{ background: (participant.paymentStatus === 'pending' || participant.markPaidStatus === 'pending') ? 'rgba(139, 92, 246, 0.03)' : 'transparent' }}>
-                <td>
+                <td data-label="Recipient">
                   <div className="flex flex-col">
                     <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                       #{index + 1}
@@ -224,11 +270,11 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
                     </span>
                   </div>
                 </td>
-                <td style={{ textAlign: 'right', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
+                <td data-label="Amount" style={{ textAlign: 'right', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
                   {participant.amount} XLM
                 </td>
                 {/* XLM Payment transaction status */}
-                <td>
+                <td data-label="XLM Payment">
                   <div className="flex flex-col gap-1">
                     {getStatusBadge(participant.paymentStatus)}
                     {participant.paymentTxHash && (
@@ -244,14 +290,12 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
                       </a>
                     )}
                     {participant.paymentError && (
-                      <span style={{ color: 'var(--error)', fontSize: '0.75rem', maxWidth: '120px', wordBreak: 'break-all' }}>
-                        {participant.paymentError}
-                      </span>
+                      <CompactErrorDisplay error={participant.paymentError} />
                     )}
                   </div>
                 </td>
                 {/* On chain paid state synced in real time */}
-                <td>
+                <td data-label="On-Chain Status">
                   {participant.onChainPaid ? (
                     <span className="pulse-badge status-success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
                       <UserCheck size={12} />
@@ -265,7 +309,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
                   )}
                 </td>
                 {/* Mark Paid Registry contract status */}
-                <td>
+                <td data-label="Registry Status">
                   <div className="flex flex-col gap-1">
                     {getStatusBadge(participant.markPaidStatus)}
                     {participant.markPaidTxHash && (
@@ -281,9 +325,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
                       </a>
                     )}
                     {participant.markPaidError && (
-                      <span style={{ color: 'var(--error)', fontSize: '0.75rem', maxWidth: '120px', wordBreak: 'break-all' }}>
-                        {participant.markPaidError}
-                      </span>
+                      <CompactErrorDisplay error={participant.markPaidError} />
                     )}
                   </div>
                 </td>

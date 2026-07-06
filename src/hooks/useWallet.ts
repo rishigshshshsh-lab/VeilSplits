@@ -42,16 +42,6 @@ export const useWallet = () => {
     error: null,
   });
 
-  // Check connection status from localStorage on mount (persistence)
-  useEffect(() => {
-    const savedAddress = localStorage.getItem('connected_stellar_address');
-    if (savedAddress) {
-      setState((prev) => ({ ...prev, address: savedAddress }));
-      // Fetch balance for the saved address
-      fetchBalance(savedAddress);
-    }
-  }, []);
-
   // Helper to fetch balance
   const fetchBalance = useCallback(async (walletAddress: string) => {
     setState((prev) => ({ ...prev, loadingBalance: true, error: null }));
@@ -72,6 +62,16 @@ export const useWallet = () => {
       }));
     }
   }, []);
+
+  // Check connection status from localStorage on mount (persistence)
+  useEffect(() => {
+    const savedAddress = localStorage.getItem('connected_stellar_address');
+    if (savedAddress) {
+      setState((prev) => ({ ...prev, address: savedAddress }));
+      // Fetch balance for the saved address
+      fetchBalance(savedAddress);
+    }
+  }, [fetchBalance]);
 
   // Connect wallet using StellarWalletsKit modal
   const connect = useCallback(async () => {
