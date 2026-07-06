@@ -126,7 +126,7 @@ Verifies UI stability and react state logic in `src/tests/split.test.tsx`:
 ## 🔗 Orange Belt Submission Checklist Requirements
 
 ### 1. Live Demo & Video
-- **Live Deployed Frontend (Vercel/Netlify)**: [StellarSplit Live](https://stellarsplit-orange.vercel.app)
+- **Live Deployed Frontend (Vercel/Netlify)**: [StellarSplit Live](https://stellar-splites.vercel.app/)
 - **Demo Walkthrough Video (1-2 mins)**: [StellarSplit Orange Belt Demo](https://youtu.be/dummy-orange-belt)
 
 ### 2. Smart Contract Addresses
