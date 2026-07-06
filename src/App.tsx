@@ -6,7 +6,7 @@ import { BalanceCard } from './components/BalanceCard';
 import { SplitForm } from './components/SplitForm';
 import { TransactionProgress } from './components/TransactionProgress';
 import type { ContractCallStatus, ParticipantSplitStatus } from './components/TransactionProgress';
-import { sendPayment, executeContractCall, getSplitStatusOnChain } from './lib/stellar';
+import { sendPayment, executeContractCall, getSplitStatusOnChain, NOTIFIER_CONTRACT_ID } from './lib/stellar';
 import { Address, nativeToScVal } from '@stellar/stellar-sdk';
 import { ActivityFeed } from './components/ActivityFeed';
 
@@ -73,6 +73,8 @@ function App() {
           nativeToScVal(generatedBillId),
           nativeToScVal(totalStroops, { type: 'u64' }),
           nativeToScVal(recipients.map(p => Address.fromString(p))),
+          nativeToScVal(Address.fromString(address!)),
+          nativeToScVal(Address.fromString(NOTIFIER_CONTRACT_ID)),
         ],
         (status, txHash, errorMsg) => {
           setCreateSplit({ status, txHash, error: errorMsg });
