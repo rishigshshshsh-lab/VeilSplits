@@ -127,7 +127,7 @@ Verifies UI stability and react state logic in `src/tests/split.test.tsx`:
 
 ### 1. Live Demo & Video
 - **Live Deployed Frontend (Vercel/Netlify)**: [StellarSplit Live](https://stellar-splites.vercel.app/)
-- **Demo Walkthrough Video (1-2 mins)**: [StellarSplit Orange Belt Demo](https://youtu.be/dummy-orange-belt)
+- **Demo Walkthrough Video (1-2 mins)**: [StellarSplit Orange Belt Demo](https://photos.app.goo.gl/JUvp4N1ESb2Z1QFK6)
 
 ### 2. Smart Contract Addresses
 - **SplitBillRegistry Contract Address**: `CCDNTBNWZDBCEKMTQABGIZQIO36S2UVOL2RTMQBKCYD5PUOH5FVCUEUQ`
