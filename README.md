@@ -1,5 +1,7 @@
 # StellarSplit - Smart Split Bill Calculator (Level 3 - Orange Belt)
 
+[![CI](https://github.com/rishigshshshsh-lab/StellarSplites/actions/workflows/ci.yml/badge.svg)](https://github.com/rishigshshshsh-lab/StellarSplites/actions/workflows/ci.yml)
+
 A beautiful, high-performance decentralized web application (dApp) built on the Stellar Testnet. This upgraded version meets all **Level 3 - Orange Belt** requirements, supporting inter-contract communication, real-time event streaming activity feeds, a CI/CD pipeline, mobile responsive stacked card layouts, and complete automated test coverage (Soroban Rust SDK + Vitest React Testing Library).
 
 ---
