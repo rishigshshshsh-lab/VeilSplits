@@ -14,6 +14,17 @@ export interface WalletState {
   error: string | null;
 }
 
+const formatWalletError = (err: any): string => {
+  const msg = err?.message || '';
+  if (msg.includes('User reject') || msg.includes('rejected') || msg.includes('User declined')) {
+    return 'Connection request rejected. Please approve the connection request in Freighter to continue.';
+  }
+  if (msg.includes('not funded') || msg.includes('404')) {
+    return 'Account is not funded on Testnet. Please fund it using Friendbot (link below) before connecting.';
+  }
+  return msg || 'An unknown error occurred while connecting Freighter.';
+};
+
 export const useWallet = () => {
   const [state, setState] = useState<WalletState>({
     address: null,
@@ -91,7 +102,7 @@ export const useWallet = () => {
       setState((prev) => ({
         ...prev,
         isConnecting: false,
-        error: err.message || 'Failed to connect wallet.',
+        error: formatWalletError(err),
       }));
     }
   }, [fetchBalance]);
