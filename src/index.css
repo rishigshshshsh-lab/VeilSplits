@@ -928,3 +928,27 @@ h2 {
   WebkitTextFillColor: transparent !important;
 }
 
+/* Premium Toast Animations & Styling */
+.toast {
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.theme-light .toast {
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+
