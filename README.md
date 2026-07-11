@@ -5,7 +5,7 @@ VeilSplit is a privacy-preserving recurring bill settlement protocol built on St
 ## Live Demo
 
 - 🚀 **Production URL:** [LIVE_DEMO_URL_HERE](LIVE_DEMO_URL_HERE)
-- 📹 **Demo Video:** [DEMO_VIDEO_URL_HERE](DEMO_VIDEO_URL_HERE)
+- 📹 **Demo Video:** [https://youtu.be/clqCccFFX0k](https://youtu.be/clqCccFFX0k)
 
 ## Problem & Solution
 
