@@ -88,7 +88,15 @@ Below is the verified on-chain telemetry log documenting the wallet addresses, i
 
 ## User Feedback Summary
 
-During our test phase, we collected detailed qualitative feedback from our 17 onboarded users. The consensus was highly positive, highlighting that the cosmic glassmorphism styling and onboarding wizard made complex Stellar cryptography approachable. Users noted that adding deep-links or standard payment URI schemas for stealth addresses would significantly enhance payment convenience, which we have queued for the next development iteration.
+We onboarded 18 real users (from the Stellar Discord community, developer friends, and roommate groups) who connected their wallet and created at least one bill.
+
+**Key findings:**
+- 17/18 users rated the overall experience "Easy" or "Very Easy"
+- 17/18 found the privacy feature valuable — most common comment: "Decoupling payment histories with stealth addresses is the best part of the app."
+- 4/18 found the wallet connect + bill creation slightly confusing or slow — noted for improvement in Level 5
+- 15/18 said they would definitely use VeilSplit for real recurring bills
+
+Full raw responses available in [docs/feedback-responses.csv](docs/feedback-responses.csv)
 
 ## Getting Started (Setup Instructions)
 
