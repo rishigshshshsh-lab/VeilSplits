@@ -24,6 +24,9 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error caught by ErrorBoundary:', error, errorInfo);
+    if ((window as any).Sentry) {
+      (window as any).Sentry.captureException(error);
+    }
   }
 
   private handleReset = () => {
@@ -58,7 +61,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </h1>
             
             <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: '1.05rem', lineHeight: '1.6' }}>
-              StellarSplit encountered an unexpected error. This could be due to a ledger synchronization latency or wallet provider issue.
+              VeilSplit encountered an unexpected error. This could be due to a ledger synchronization latency or wallet provider issue.
             </p>
 
             {this.state.error && (
