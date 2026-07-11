@@ -9,6 +9,8 @@ import type { ContractCallStatus, ParticipantSplitStatus } from './components/Tr
 import { sendPayment, executeContractCall, getSplitStatusOnChain, NOTIFIER_CONTRACT_ID } from './lib/stellar';
 import { Address, nativeToScVal } from '@stellar/stellar-sdk';
 import { ActivityFeed } from './components/ActivityFeed';
+import { CreateBill } from './components/CreateBill';
+import { createPrivateBillOnChain } from './lib/stellar';
 
 function App() {
   const {
@@ -28,6 +30,7 @@ function App() {
   const [createSplit, setCreateSplit] = useState<ContractCallStatus>({ status: 'idle' });
   const [participants, setParticipants] = useState<ParticipantSplitStatus[]>([]);
   const [showProgress, setShowProgress] = useState(false);
+  const [billMode, setBillMode] = useState<'private' | 'standard'>('private');
 
   // Keep a reference to the active polling interval to clear it on unmount or reset
   const pollIntervalRef = useRef<any>(null);
@@ -190,8 +193,8 @@ function App() {
     <>
       {/* Premium Background - Aurora + Grain */}
       <div className="aurora-bg">
-        <div className="aurora-circle-1"></div>
-        <div className="aurora-circle-2"></div>
+        <div className="aurora-circle-1" style={{ background: billMode === 'private' ? 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0) 70%)' : undefined }}></div>
+        <div className="aurora-circle-2" style={{ background: billMode === 'private' ? 'radial-gradient(circle, rgba(16,185,129,0.1) 0%, rgba(16,185,129,0) 70%)' : undefined }}></div>
         <div className="aurora-grain"></div>
       </div>
 
@@ -226,32 +229,62 @@ function App() {
             </div>
           </div>
         ) : (
-          <div className="grid-2">
-            <div className="glowing-wrapper">
-              <div className="glowing-glow"></div>
-              <div className="glowing-content">
-                <BalanceCard
-                  address={address}
-                  balance={balance}
-                  loadingBalance={loadingBalance}
-                  error={error}
-                  refreshBalance={refreshBalance}
-                />
+          <>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+              <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '0.25rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <button 
+                  className={`btn ${billMode === 'private' ? 'btn-primary' : 'btn-secondary'}`}
+                  style={{ borderRadius: '8px', border: 'none', padding: '0.5rem 1.5rem', background: billMode === 'private' ? 'var(--primary)' : 'transparent' }}
+                  onClick={() => setBillMode('private')}
+                >
+                  VeilSplit (Private)
+                </button>
+                <button 
+                  className={`btn ${billMode === 'standard' ? 'btn-primary' : 'btn-secondary'}`}
+                  style={{ borderRadius: '8px', border: 'none', padding: '0.5rem 1.5rem', background: billMode === 'standard' ? 'rgba(255,255,255,0.1)' : 'transparent' }}
+                  onClick={() => setBillMode('standard')}
+                >
+                  Standard Split
+                </button>
               </div>
             </div>
 
-            <div className="glowing-wrapper">
-              <div className="glowing-glow"></div>
-              <div className="glowing-content">
-                <SplitForm
-                  senderAddress={address}
-                  senderBalance={balance}
-                  onSendPayments={handleSendPayments}
-                  isSending={isSending}
-                />
+            <div className="grid-2">
+              <div className="glowing-wrapper">
+                <div className="glowing-glow"></div>
+                <div className="glowing-content">
+                  <BalanceCard
+                    address={address}
+                    balance={balance}
+                    loadingBalance={loadingBalance}
+                    error={error}
+                    refreshBalance={refreshBalance}
+                  />
+                </div>
+              </div>
+
+              <div className="glowing-wrapper">
+                <div className="glowing-glow"></div>
+                <div className="glowing-content">
+                  {billMode === 'private' ? (
+                    <CreateBill
+                      senderAddress={address}
+                      onSendPrivateBill={(recipients, totalAmount, isRecurring) => 
+                        createPrivateBillOnChain(address!, recipients, totalAmount, isRecurring)
+                      }
+                    />
+                  ) : (
+                    <SplitForm
+                      senderAddress={address}
+                      senderBalance={balance}
+                      onSendPayments={handleSendPayments}
+                      isSending={isSending}
+                    />
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
 
         <div className="glowing-wrapper" style={{ marginTop: '2rem' }}>
@@ -265,7 +298,7 @@ function App() {
       <footer className="footer">
         <div className="container">
           <p>
-            StellarSplit &copy; {new Date().getFullYear()} &bull; Built on Stellar Testnet &bull;{' '}
+            VeilSplit &copy; {new Date().getFullYear()} &bull; Built on Stellar Testnet &bull;{' '}
             <a href="https://developers.stellar.org/" target="_blank" rel="noopener noreferrer">
               Stellar Developers
             </a>

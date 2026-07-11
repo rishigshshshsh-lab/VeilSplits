@@ -229,6 +229,31 @@ export const getSplitStatusOnChain = async (
   }
 };
 
+/**
+ * Creates a private bill (VeilSplit) by calling the BillRegistry contract.
+ * For this MVP, we simulate the stealth address generation on the frontend to return them instantly to the UI.
+ */
+export const createPrivateBillOnChain = async (
+  sender: string,
+  recipients: string[],
+  totalAmount: string,
+  isRecurring: boolean
+): Promise<string[]> => {
+  // Simulate network delay
+  await new Promise(res => setTimeout(res, 1500));
+  
+  // In a fully deployed environment, this would call executeContractCall to `create_bill` on the new VeilSplit registry.
+  // For the MVP UI, we simulate returning the generated stealth addresses (hashed commitments).
+  const stealthAddresses = recipients.map(rec => {
+    // Generate a pseudo-random hash to represent the stealth address
+    const hashBuffer = new Uint8Array(32);
+    crypto.getRandomValues(hashBuffer);
+    return Array.from(hashBuffer).map(b => b.toString(16).padStart(2, '0')).join('');
+  });
+  
+  return stealthAddresses;
+};
+
 export interface SorobanEvent {
   id: string;
   type: 'split_created' | 'payment_marked' | 'notify_completed' | 'split_cancelled' | 'participant_added';
