@@ -587,6 +587,7 @@ h2 {
   position: relative;
   overflow: hidden;
   animation: slideIn 0.3s ease-out;
+  flex-shrink: 0;
 }
 
 .activity-item::before {

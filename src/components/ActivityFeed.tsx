@@ -244,14 +244,18 @@ export const ActivityFeed = () => {
                   <span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.9)' }}>
                     {formatEventMessage(ev)}
                   </span>
-                  <a
-                    href={`https://stellar.expert/explorer/testnet/tx/${ev.txHash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-explorer text-sm"
-                  >
-                    View Tx
-                  </a>
+                  {ev.txHash && !ev.id.startsWith('sim-') ? (
+                    <a
+                      href={`https://stellar.expert/testnet/tx/${ev.txHash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-explorer text-sm"
+                    >
+                      View Tx
+                    </a>
+                  ) : (
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>Simulated</span>
+                  )}
                 </div>
                 <div className="activity-meta">
                   <span className="activity-time">Event ID: {ev.id.substring(0, 8)}...</span>
