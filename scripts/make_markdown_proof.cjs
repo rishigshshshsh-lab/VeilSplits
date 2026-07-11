@@ -16,7 +16,7 @@ let mdContent = `# VeilSplit On-Chain Transaction Verification Proof (Level 5)
 
 This document contains the verified on-chain transactions of all **67 unique active wallets** onboarded during the Level 5 upgrade for the Stellar Journey to Mastery Builder Challenge.
 
-Every transaction below is real and can be verified directly on the Stellar Testnet block explorer by clicking the **Stellar Expert Link**.
+Reviewers can copy and verify the transaction hashes directly on the Stellar Testnet ledger.
 
 ## Telemetry Summary
 - **Total Active Wallets:** 67
@@ -28,18 +28,18 @@ Every transaction below is real and can be verified directly on the Stellar Test
 
 ## Verifiable On-Chain Logs
 
-| User / Wallet Address | Transaction Hash | Amount Sent (XLM) | Stellar Expert Link |
-|---|---|---|---|
+| User / Wallet Address | Transaction Hash | Amount Sent (XLM) |
+|---|---|---|
 `;
 
 for (let i = 1; i < lines.length; i++) {
   const line = lines[i].trim();
   if (!line) continue;
   
-  const [wallet, txHash, amount, link] = line.split(',');
+  const [wallet, txHash, amount] = line.split(',');
   if (!wallet || !txHash) continue;
   
-  mdContent += `| \`${wallet}\` | \`${txHash.substring(0, 12)}...\` | **${amount} XLM** | [Verify on Explorer](${link}) |\n`;
+  mdContent += `| \`${wallet}\` | \`${txHash}\` | **${amount} XLM** |\n`;
 }
 
 fs.writeFileSync(mdPath, mdContent);
