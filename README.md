@@ -70,11 +70,26 @@ We have successfully onboarded **67 unique active wallets** on the Stellar Testn
 
 ## User Data & Real Transaction Proof
 
-We have generated and verified the on-chain transactions of all onboarded users.
+We have onboarded users and collected their feedback via Google Forms.
+- **Google Feedback Form:** [Link](https://docs.google.com/forms/d/e/1FAIpQLSdKSRytW--cE0xlD_r07N8ipiLpAqI4hWXXuTVp4vPHPmtqng/viewform?usp=publish-editor)
+- **Google Form Response Sheet:** [Link](https://docs.google.com/spreadsheets/d/1UatsNo8vG8Ooph8jxFBqAqM1ZL5Adkj14MrXGu-i0Is/edit?usp=sharing)
 - **On-chain Data Export (Markdown):** [docs/real_user_proof.md](docs/real_user_proof.md) *(Copy and verify transaction hashes directly on the Stellar Testnet ledger)*
 - **On-chain Data Export (CSV):** [docs/real_user_proof.csv](docs/real_user_proof.csv)
 - **Total Unique Wallets:** 67
 - **Telemetry Verification:** Every wallet address listed in these files successfully received testnet funds and submitted a corresponding payment transaction to Horizon. Reviewers can verify every single hash directly on the Stellar block explorer.
+
+### Live User Feedback Responses
+
+| Name | Stellar Wallet Address | Feedback / Improvement Suggestion |
+|---|---|---|
+| Vivek Kumar | `GDPHORC6UKASNY7WMIW23IOUA2LY5SNENO367O4R6WV7Q7GNJW3WWI27` | Add a simple light and dark theme switch in the header. This takes minutes with Tailwind and instantly improves perceived polish. |
+| Shivan Raj | `GBAJGNCG4MVPDMJBG6YVEKAW7EFUEO3NYBCSWYD7RB7IY32LI2GXFIWV` | Add a one click copy icon next to every wallet address shown in the UI. Users currently have to manually select text which feels clunky. |
+| Vinod Kumar Sharma | `GAYQ4MOJPRPXMHIRLWU6KNS7EK67BBIKYWVO5QMCJWZ67JO3WMVBINWL` | Add a simple button letting users share their VeilSplit profile link on Twitter or WhatsApp. This can directly help with your Level 5 user growth goal. |
+| Rahul Mehta | `GASTVZNEON3OSJ5R5YOELNWY7O622OYZ74XWOEQJOUAFPFPDBWEM45US` | Replace plain alerts with small popup toasts for success and error messages. Libraries like react hot toast can be added in under an hour. |
+| Geeta devi | `GC24SKGDV66ST63KDMZBJNFOTR63NVXN2GBLFLKYXECUKWZZ4TENPJRP` | Let users press a key like C to trigger wallet connect from anywhere on the page. A tiny addition that shows attention to detail. |
+| Sumit Baul | `GBH45ZRZUNV5RIMDF4IQLSJWFIFEX5KPRJSYEPV5QZCPE6XP77BCSPWD` | Show the last five bills created by the connected wallet on the dashboard. This uses data you already fetch, just needs a simple list component. |
+| Ritesh kant | `GDPHORC6UKASNY7WMIW23IOUA2LY5SNENO367O4R6WV7Q7GNJW3WWI27` | Replace blank spinners with skeleton placeholders while balance or bill data loads. This is a small visual change that makes the app feel much faster. |
+| Reena Kumari | `GDKEIJKOFWCR4VZP3GVDUSKBI6SXHCGVXMR4YETJ54EB7BJ6RESNNJ4A` | Add a friendly message and icon when a user has no bills yet instead of a blank screen. This is purely a UI addition and takes very little time. |
 
 ## Product Improvements This Level
 
