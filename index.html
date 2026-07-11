@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>stellarsplit</title>
+    <title>VeilSplit - Private Bill Settlement on Stellar</title>
+    <!-- Plausible Analytics -->
+    <script defer data-domain="veilsplit.app" src="https://plausible.io/js/script.js"></script>
+    
+    <!-- Sentry Error Tracking Mock (MVP) -->
+    <script>
+      window.Sentry = {
+        captureException: function(err) {
+          console.error("Sentry Captured Exception:", err);
+        }
+      };
+    </script>
   </head>
   <body>
     <div id="root"></div>

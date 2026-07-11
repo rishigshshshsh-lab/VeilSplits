@@ -11,6 +11,9 @@ import { Address, nativeToScVal } from '@stellar/stellar-sdk';
 import { ActivityFeed } from './components/ActivityFeed';
 import { CreateBill } from './components/CreateBill';
 import { createPrivateBillOnChain } from './lib/stellar';
+import { OnboardingFlow } from './components/OnboardingFlow';
+import { FeedbackWidget } from './components/FeedbackWidget';
+import { AdminDashboard } from './pages/AdminDashboard';
 
 function App() {
   const {
@@ -31,6 +34,16 @@ function App() {
   const [participants, setParticipants] = useState<ParticipantSplitStatus[]>([]);
   const [showProgress, setShowProgress] = useState(false);
   const [billMode, setBillMode] = useState<'private' | 'standard'>('private');
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setIsAdmin(window.location.hash === '#admin');
+    };
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   // Keep a reference to the active polling interval to clear it on unmount or reset
   const pollIntervalRef = useRef<any>(null);
@@ -189,8 +202,20 @@ function App() {
     refreshBalance();
   };
 
+  if (isAdmin) {
+    return (
+      <>
+        <Header address={address} connect={connect} disconnect={disconnect} isConnecting={isConnecting} />
+        <AdminDashboard />
+      </>
+    );
+  }
+
   return (
     <>
+      <OnboardingFlow onConnectWallet={connect} />
+      <FeedbackWidget />
+      
       {/* Premium Background - Aurora + Grain */}
       <div className="aurora-bg">
         <div className="aurora-circle-1" style={{ background: billMode === 'private' ? 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0) 70%)' : undefined }}></div>
@@ -209,9 +234,9 @@ function App() {
 
       <main className="container" style={{ flexGrow: 1, padding: '2rem 1.5rem' }}>
         <div className="hero">
-          <h1>Split Bills, Instantly</h1>
+          <h1>Split Bills, Privately.</h1>
           <p>
-            Split expenses and send payments to multiple recipients on the Stellar Testnet, backed by a Soroban smart contract registry.
+            Split expenses and settle up on the Stellar Testnet without linking repeated payments, backed by a Soroban registry with one-time stealth addresses.
           </p>
         </div>
 
