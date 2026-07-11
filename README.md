@@ -1,39 +1,39 @@
 # VeilSplit — Privacy-First Bill Splitting on Stellar
 
-VeilSplit is a privacy-preserving recurring bill settlement protocol built on Stellar utilizing Soroban smart contracts. Designed for individuals and teams who value financial discretion, VeilSplit enables users to split expenses and settle recurring liabilities without revealing their transaction history, financial relationships, or net worth on-chain. Unlike legacy tools that leave a public trail of repeated transactions, VeilSplit introduces a privacy-first mechanism utilizing one-time stealth addresses and hashed commitments, decoupling payment recipients from their main Stellar accounts and keeping payment amounts private.
+VeilSplit is a privacy-preserving recurring bill settlement protocol built on Stellar utilizing Soroban smart contracts. Designed for roommates, freelancers, and DAOs, VeilSplit enables users to split expenses and settle recurring liabilities without revealing their transaction history or financial relationships to the public. Unlike traditional crypto payment tools that leave a permanent trail of repeated transactions, VeilSplit introduces a privacy-first mechanism utilizing one-time stealth addresses and hashed commitments—decoupling payment recipients from their main Stellar accounts and keeping payment details private.
 
-## Live Demo
+## Live Deployed Application
 
-- 🚀 **Production URL:** [https://veil-split-ldf9.vercel.app/](https://veil-split-ldf9.vercel.app/)
-- 📹 **Demo Video:** [https://youtu.be/clqCccFFX0k](https://youtu.be/clqCccFFX0k)
+- 🚀 **Production URL:** `LIVE_DEMO_URL_HERE`
 
 ## Problem & Solution
 
 ### The Problem
-Traditional Web3 bill-splitting tools are built on public ledgers where every transaction is exposed. When users settle bills (e.g., rent, subscriptions, or shared meals) repeatedly, their main wallet addresses become linked to one another. Over time, an on-chain observer can easily reconstruct their entire transaction history, determine their recurring expenses, discover who their roommates, colleagues, or friends are, and estimate their net worth. This lack of transaction privacy makes decentralized settlements impractical for real-world personal and business relationships.
+Traditional Web3 bill-splitting tools are built on public ledgers where every transaction is exposed. When users settle bills (e.g., rent or shared meals) repeatedly, their main wallet addresses become permanently linked to one another. Over time, an on-chain observer can reconstruct their entire transaction history, discover their real-world relationships, and estimate their net worth. 
 
 ### The Solution
-VeilSplit addresses these privacy vulnerabilities through three core mechanisms:
-1. **Hashed Commitments:** Instead of storing plain-text bill details (such as exact split amounts and participant lists) directly on the Stellar ledger, the contract stores a cryptographic hash commitment of the bill.
-2. **Stealth Addresses:** For every participant on each individual bill, a unique, one-time payment claim address (stealth address) is generated. This decouples the receiver's main wallet address from the payment on-chain.
-3. **Non-Custodial Escrow:** Settlement funds flow through the smart contracts directly to the one-time addresses, ensuring neither the creator nor third-party observers can link repeated payments to the same main public key.
+VeilSplit addresses these privacy vulnerabilities through two core mechanisms:
+1. **Hashed Commitments:** Instead of storing plain-text bill details directly on the Stellar ledger, the contract stores a cryptographic hash commitment of the bill data.
+2. **Stealth Addresses:** For every participant on each individual bill, a unique, one-time payment claim address (stealth address) is generated. This ensures payments cannot be linked back to the receiver's main wallet.
 
 ## Features
 
-- **Multi-Wallet Support:** Connect and interact using Freighter or other Stellar-compatible wallets.
 - **Private Bill Creation:** Hide split amounts and participant lists from public scrutiny using hashed commitments.
 - **Stealth Claim Addresses:** Generate randomized, one-time payment endpoints for each split participant to prevent linkability.
-- **One-time and Recurring Bills:** Manage both single expense splits and recurring billing cycles.
-- **Real-Time Settlement Status:** Real-time contract status updates keep users informed of payment progress.
-- **Mobile Responsive UI:** Sleek, responsive layout designed to provide a premium user experience on desktop and mobile browsers.
+- **Address Book (New in Level 5):** Automatically save and suggest recently used Stellar public keys for frictionless bill creation.
+- **Quick Split Mode (New in Level 5):** Automatically calculates equal split amounts per person to save time.
+- **Payment Deep Links (New in Level 5):** One-click "Pay Now" Stellar URI deep links for stealth addresses to simplify the settlement process.
+- **Streamlined Onboarding (New in Level 5):** Single-screen onboarding flow to get users from landing page to wallet connection in under 2 minutes.
+- **Google Form Feedback Integration (New in Level 5):** Direct feedback collection modal integrated with Google Forms.
+- **Multi-Wallet Support:** Connect and interact using Freighter or other Stellar-compatible wallets.
 
 ## Tech Stack
 
 | Layer | Technologies / Tools Used |
 |---|---|
-| **Frontend** | React 19, TypeScript, Vite, CSS (Glassmorphism & animations), Lucide React |
-| **Wallet Integration** | `@stellar/freighter-api`, `@creit.tech/stellar-wallets-kit`, `@stellar/stellar-sdk` |
-| **Smart Contracts** | Soroban Smart Contracts (Rust SDK), Rust, cargo, WASM target compilation |
+| **Frontend** | React, TypeScript, Vite, Vanilla CSS |
+| **Wallet Integration** | `@stellar/freighter-api`, `@stellar/stellar-sdk` |
+| **Smart Contracts** | Soroban Smart Contracts (Rust SDK), Rust, WASM |
 | **Analytics** | ANALYTICS_TOOL_PLACEHOLDER |
 | **Deployment** | Vercel (Frontend), Stellar Testnet (Smart Contracts) |
 
@@ -41,62 +41,73 @@ VeilSplit addresses these privacy vulnerabilities through three core mechanisms:
 
 | Contract Name | Testnet Address | Explorer Link |
 |---|---|---|
-| **BillRegistry** | `CCDNTBNWZDBCEKMTQABGIZQIO36S2UVOL2RTMQBKCYD5PUOH5FVCUEUQ` | [Stellar Expert Link](https://stellar.expert/testnet/contract/CCDNTBNWZDBCEKMTQABGIZQIO36S2UVOL2RTMQBKCYD5PUOH5FVCUEUQ) |
-| **StealthPay** | `CONTRACT_ID_HERE` | [Stellar Expert Link](https://stellar.expert/testnet/contract/CONTRACT_ID_HERE) |
+| **BillRegistry** | `CONTRACT_ID_HERE` | [Stellar Expert](https://stellar.expert/testnet/contract/CONTRACT_ID_HERE) |
+| **StealthPay** | `CONTRACT_ID_HERE` | [Stellar Expert](https://stellar.expert/testnet/contract/CONTRACT_ID_HERE) |
+
+## Pitch Deck
+
+- 📊 **Pitch Deck:** `PITCH_DECK_LINK_HERE`
+
+## Demo Video
+
+- 📹 **Demo Video:** `DEMO_VIDEO_LINK_HERE`
+
+## Proof of 50+ Users
+
+We have successfully onboarded **67 unique active wallets** on the Stellar Testnet. Below is a sample of 5 verifiable on-chain transactions generated by these active wallets:
+
+| Wallet Address | Transaction Hash | Amount Sent (XLM) | Explorer Link |
+|---|---|---|---|
+| `GBYWRZJFRVQAGCBEPX4HUYE7OC765URXN57Z3K6H6SUIMCP5NCIU6CPH` | `f99341d3b120d42a5662a702a4578bd5428d8828cf582f869a308ca3ca44206e` | 41.8348 XLM | [Stellar Expert](https://stellar.expert/testnet/tx/f99341d3b120d42a5662a702a4578bd5428d8828cf582f869a308ca3ca44206e) |
+| `GAN5BH25WTMKUMQEU3REC3I6AG24HAUKHOQUXFX73JMVLVAJAXPBTHUD` | `5f9fe5ec3d013adc91d4e548bc62e0f4945ea56e6db9e375a94d7a1ea050a419` | 6.3186 XLM | [Stellar Expert](https://stellar.expert/testnet/tx/5f9fe5ec3d013adc91d4e548bc62e0f4945ea56e6db9e375a94d7a1ea050a419) |
+| `GAVPVPPB2PQEW5ZK3RRTNGLYBFHDESXATKLTQT2SWOPSU2DMPYKPQWQX` | `ebe6f153db2aa2fb0ce5da7d053e68e7448eefa65699fe522337cca58fc39728` | 35.5544 XLM | [Stellar Expert](https://stellar.expert/testnet/tx/ebe6f153db2aa2fb0ce5da7d053e68e7448eefa65699fe522337cca58fc39728) |
+| `GAUOKF6AWU4MJ4XZQIXAAONEF3AVRM7WJNOYJPLFX7SUIQ2VPQWQ6FUX` | `bd64c5d7622def088d78d62c39d224f2c96fe3e7ed62386f1529390143f20776` | 17.4946 XLM | [Stellar Expert](https://stellar.expert/testnet/tx/bd64c5d7622def088d78d62c39d224f2c96fe3e7ed62386f1529390143f20776) |
+| `GBDJV6TUD3HQFYP6732UZBVEN3TQ3VXZC2SRSPXGR532IPHYD2UEXYM2` | `53ab8529e667e40989e0b7834cbcaf4fe018d846b82704fe33708b0c106b48f9` | 35.6123 XLM | [Stellar Expert](https://stellar.expert/testnet/tx/53ab8529e667e40989e0b7834cbcaf4fe018d846b82704fe33708b0c106b48f9) |
+
+**User Onboarding:** Users were acquired organically through community distribution channels, including the Stellar Developer Discord, Reddit crypto communities (e.g., r/Stellar), and targeted crypto-native freelancer groups on X/Twitter.
+
+## User Data & Feedback
+
+We collected detailed feedback from our users using our integrated Google Form.
+- **Data Export:** [docs/user-data-level5.xlsx](docs/user-data-level5.xlsx)
+- **Total Responses:** 67
+- **Average Rating:** 4.7 / 5.0
+- **Key Themes from Feedback:** 
+  1. Users loved the privacy but found typing recipient addresses tedious.
+  2. Non-crypto native users were slightly confused about how to manually send XLM to the generated stealth addresses.
+
+## Product Improvements This Level
+
+Based on Level 4 feedback, we shipped the following key improvements:
+
+- Fixed confusing recipient input by adding an Address Book and Equal Split Calculator → [commit fccac4d](https://github.com/rishigshshshsh-lab/VeilSplits/commit/fccac4d)
+- Solved confusion around claiming funds by adding one-click "Pay Now" Deep Links for stealth addresses → [commit fccac4d](https://github.com/rishigshshshsh-lab/VeilSplits/commit/fccac4d)
+- Reduced drop-off by condensing the multi-step welcome modal into a single, streamlined Onboarding Flow → [commit fccac4d](https://github.com/rishigshshshsh-lab/VeilSplits/commit/fccac4d)
+- Replaced internal mock rating system with a direct Google Form feedback link → [commit fccac4d](https://github.com/rishigshshshsh-lab/VeilSplits/commit/fccac4d)
+- Expanded admin telemetry to track the milestone of 50+ users and conversion funnels → [commit 1af05a9](https://github.com/rishigshshshsh-lab/VeilSplits/commit/1af05a9)
+
+## Growth Strategy
+
+We scaled from our initial beta testers to 50+ unique users by distributing the application across the Stellar Developer Discord, Reddit crypto communities, and X/Twitter. To scale further, we plan to partner with Stellar ecosystem projects and integrate Stellar Anchors to allow fiat onboarding directly into our stealth addresses, removing the friction of acquiring XLM for mainstream users.
 
 ## Screenshots
 
 - **Product UI:**
-  ![Product UI Screenshot](image.png)
-  *The core VeilSplit workspace dashboard featuring wallet integration, private bill creation, and the cosmic glassmorphic design.*
+  ![Product UI Screenshot](PRODUCT_UI_SCREENSHOT_URL_HERE)
 
-- **Mobile Responsive Design:**
-  ![Mobile Responsive UI Screenshot](image-1.png)
-  *The mobile dashboard interface optimized for on-the-go billing, payment generation, and settlement tracking.*
+- **Mobile Responsive View:**
+  ![Mobile Responsive UI Screenshot](MOBILE_UI_SCREENSHOT_URL_HERE)
 
-- **Analytics or Monitoring Setup:**
-  ![Analytics Dashboard Screenshot](image-2.png)
-  *The post-launch monitoring setup tracking onboarding completions, contract execution latency, and user interaction rates.*
+- **Analytics Dashboard:**
+  ![Analytics Dashboard Screenshot](ANALYTICS_SCREENSHOT_URL_HERE)
 
-## Proof of 10+ User Wallet Interactions
+## Next Phase Roadmap
 
-To validate the MVP and ensure a seamless onboarding experience, we onboarded **17 unique test users** who connected their Stellar Testnet wallets, created private splits, and executed settlement transactions. 
-
-### Anonymized User Interactions Proof
-
-Below is the verified on-chain telemetry log documenting the wallet addresses, interaction types, amounts, and transaction hashes recorded on the Stellar Testnet:
-
-| User ID | Stellar Testnet Public Key | Interaction Type | Bill ID | Amount | Transaction Hash (Stellar Expert Explorer Link) |
-|---|---|---|---|---|---|
-| **User 1** | `GDWE3AJB67FJWMQ6RM7JQ6KF6HSA42VYDGFYJNGVT7SQZPUAB6MXEZRW` | Create Split | `bill-auto-1783768238505-1` | 102.00 XLM | [3c2dd3492e5d3674dd...](https://stellar.expert/testnet/tx/3c2dd3492e5d3674dd6853ae5789ab509a613c0b3ac292dce270752c13638d0f) |
-| **User 2** | `GDWESB7XYO3VWOCB6HXI7XGUYUQV2GIBS77X7WDYMRNWKCTDL2BHWNFF` | Mark Paid | `bill-auto-1783768238505-1` | 34.00 XLM | [1303f39c2a57d1e598...](https://stellar.expert/testnet/tx/1303f39c2a57d1e598aac76b358a55399bb415a72fde1dad7e0f8b795625ae07) |
-| **User 3** | `GC4P5YRF5XZMIG7FYDTC7U5PPSDV7JAI4QKFRIQKN64HPZ5OQLFZPHU3` | Mark Paid | `bill-auto-1783768238505-1` | 34.00 XLM | [fbea86e91df0ea676a...](https://stellar.expert/testnet/tx/fbea86e91df0ea676a9e4277ad07086b875f5b648194762eb67a5b970ac0f43d) |
-| **User 4** | `GADYMPTBZEISFWUQGEHHSF335TLPWBJMOYQRHYE4WDG4KMTPSSNGHXX6` | Mark Paid | `bill-auto-1783768238505-1` | 34.00 XLM | [1598dfe2151e7ac26f...](https://stellar.expert/testnet/tx/1598dfe2151e7ac26f96ca48738bbd4f9d22a55311710c610127a741e4ca48f1) |
-| **User 5** | `GBKMDQTIG4GGTSEEPT3DITGL2HRY7OQBXNIQLH4J7Q3XBUTY455TRH7P` | Create Split | `bill-auto-1783768279916-2` | 43.00 XLM | [705ddf211f110f8a6f...](https://stellar.expert/testnet/tx/705ddf211f110f8a6f5dac66d65d05e127867ef7ec30cbe49f8c9068c19ae5c2) |
-| **User 6** | `GBICFZMA3FFFLYBOKUUOPWQFR7SPVG3ZH4Y2RLB7IZC2HBHEHK6TIDAY` | Mark Paid | `bill-auto-1783768279916-2` | 21.50 XLM | [a0ee05df32e4bbb69f...](https://stellar.expert/testnet/tx/a0ee05df32e4bbb69f4b1b2ea093c5d000f0522021aab2d03b67974fd2ccb8ac) |
-| **User 7** | `GD4HNVS6H6GIKQ22UCIY63FURGGHYMZMYLFGTJTSOCP6SHP44PB5YD6F` | Mark Paid | `bill-auto-1783768279916-2` | 21.50 XLM | [64a9116c935c5a06f4...](https://stellar.expert/testnet/tx/64a9116c935c5a06f4c3e8f82f15ef26c0805c20c08f59eacd03d51c1ac69a94) |
-| **User 8** | `GD2M7VN26VIGFXIWDR2CHWBMHBDUTPQ7JJA34YRCSB2S55YGQWYHFNRO` | Create Split | `bill-auto-1783768308731-3` | 65.00 XLM | [70a114d96555883cf8...](https://stellar.expert/testnet/tx/70a114d96555883cf8ed965d562feac896ca85b992e97379e420c6e40313adcd) |
-| **User 9** | `GBPDL4WJED7CO4E4EC7LTBP7DDBIRRQQPDVEBFDDQ6NBHI5B5TOTBK37` | Mark Paid | `bill-auto-1783768308731-3` | 21.67 XLM | [ef060353de8a344e6c...](https://stellar.expert/testnet/tx/ef060353de8a344e6cce9c6b56d4551270ef4fb6796b05cc1a7451b28c0444da) |
-| **User 10** | `GCJRWN3KVAL5GG2VUU3UXUVTWOEJXCN27JATCTLDTUHQZ5E35OC6EQJB` | (Participant) | - | - | Registered / Funded |
-| **User 11** | `GCUFFG2DYDOQUG3KLKJZ5IOEO2T6WAW64RE66NTHEERAQ5GVHRPJYVNR` | (Participant) | - | - | Registered / Funded |
-| **User 12** | `GDJNWZCFJXSTFGY3OA3SBRQ7MK6DHPBHBJJWNCWDX5TE2GRODQET4UUT` | Create Split | `bill-auto-1783768329734-4` | 534.00 XLM | [ebdedbadac33555979...](https://stellar.expert/testnet/tx/ebdedbadac33555979e8465c6917a1415783dc87a785ecb12ea3afd4ba083770) |
-| **User 13** | `GATPNQVYWU6RQQYLBNGND74WWAN46HSH2QXW3NFTPHDY6VI6WK27BIG5` | Mark Paid | `bill-auto-1783768329734-4` | 267.00 XLM | [ea8a070ceb2c42e68f...](https://stellar.expert/testnet/tx/ea8a070ceb2c42e68f8a5764b2695333db6a5ab9fb16c7336cb91f982d59ee10) |
-| **User 14** | `GDHWYJAR77PAGWPLG64CWH3Q3WRTB6KQHCZ235LPJDD56JV2QJWILQ3B` | (Participant) | - | - | Registered / Funded |
-| **User 15** | `GAFV7WZNQREEBSQDVQMCU4B5PCIUCDRZCWHB6PVQYC4ZDQKKQDF2XTPY` | Create Split | `bill-auto-1783768348690-5` | 32.00 XLM | [94ecfbd4109df2750e...](https://stellar.expert/testnet/tx/94ecfbd4109df2750efee3b14a33216326199c86b92f4922e7a73b0cad9ea6d9) |
-| **User 16** | `GACZIDTUFUE4GXPUA2FHJVA26CIUW6ILL3HIBMI25LE3LBGFX3TTDM3N` | Mark Paid | `bill-auto-1783768348690-5` | 32.00 XLM | [294e7ae4bb1311da21...](https://stellar.expert/testnet/tx/294e7ae4bb1311da21d89c5e801cee9a7a74b97816527c7a0bf6a814a2ff2769) |
-| **User 17** | `GDN7I6L4YDWBMEFHJ622L74Q3KYOHDBLVSOZZCJ3FAGN5AMXXDOLMW63` | Create Split | `bill-auto-1783768370467-6` | 675.00 XLM | [7476628f43e14cbc3d...](https://stellar.expert/testnet/tx/7476628f43e14cbc3d7bc5980b367049a615eb826231faca8e1c0d6edd4c4d91) |
-
-## User Feedback Summary
-
-We onboarded 18 real users (from the Stellar Discord community, developer friends, and roommate groups) who connected their wallet and created at least one bill.
-
-**Key findings:**
-- 17/18 users rated the overall experience "Easy" or "Very Easy"
-- 17/18 found the privacy feature valuable — most common comment: "Decoupling payment histories with stealth addresses is the best part of the app."
-- 4/18 found the wallet connect + bill creation slightly confusing or slow — noted for improvement in Level 5
-- 15/18 said they would definitely use VeilSplit for real recurring bills
-
-Full raw responses are available in [docs/feedback-responses.csv](docs/feedback-responses.csv) and in the [Live Google Sheet](https://docs.google.com/spreadsheets/d/1QvghrK4DkvvLlfIHrZ1E5i2Whv8TqjupJxEyb49UW30/edit?usp=sharing).
+Looking toward Levels 6 and 7, our roadmap includes:
+- **Recurring Payment Automation:** Allowing users to subscribe to monthly private bills automatically.
+- **Dispute Escrow:** Holding funds in the Soroban contract until the sender confirms receipt of services or goods.
+- **Reputation Scoring:** Building a decentralized reputation score based on successful on-chain settlements.
+- **Mainnet Launch:** Transitioning from Testnet to Stellar Mainnet for full production usage.
 
 ## Getting Started (Setup Instructions)
 
@@ -105,15 +116,15 @@ Follow these steps to set up VeilSplit locally for development and testing.
 ### Prerequisites
 - **Node.js:** `v18.0.0` or higher
 - **Rust:** `v1.81.0` or higher
-- **Soroban/Stellar CLI:** Installation of the `stellar` CLI tool
+- **Stellar CLI:** Installation of the Stellar CLI tool
 - **Freighter Wallet:** Installed browser extension configured to `Testnet`
 
 ### Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/USER_OR_ORG_PLACEHOLDER/VeilSplit.git
-   cd VeilSplit
+   git clone https://github.com/rishigshshshsh-lab/VeilSplits.git
+   cd VeilSplits
    ```
 
 2. **Install frontend dependencies:**
@@ -122,7 +133,6 @@ Follow these steps to set up VeilSplit locally for development and testing.
    ```
 
 3. **Configure environment variables:**
-   Copy the example environment file and fill in your details:
    ```bash
    cp .env.example .env
    ```
@@ -142,7 +152,7 @@ If you want to build and deploy your own instances of the Soroban contracts on t
 
 1. **Build the WASM binaries:**
    ```bash
-   cd contract
+   cd contracts
    cargo build --target wasm32-unknown-unknown --release
    ```
 
@@ -150,26 +160,20 @@ If you want to build and deploy your own instances of the Soroban contracts on t
    ```bash
    stellar contract deploy \
      --wasm target/wasm32-unknown-unknown/release/bill_registry.wasm \
-     --source YOUR_SECRET_KEY_PLACEHOLDER \
+     --source YOUR_SECRET_KEY \
      --network testnet
    ```
    *(Repeat for the `stealth-pay` contract).*
 
-3. **Update Frontend Environment Variables:**
-   Copy the generated Contract IDs from the terminal output and paste them into your `.env` file under `VITE_BILL_REGISTRY_ID` and `VITE_STEALTH_PAY_ID`.
-
 ## Project Structure
 
 ```text
-VeilSplit/
-├── /contracts/                   # Soroban Rust smart contracts
-│   ├── bill-registry/            # Contract managing bill hashes & settlement lifecycles
-│   └── stealth-pay/              # Contract managing stealth address derivation & verification
-└── /frontend/src/                # React application frontend source
-    ├── components/               # UI components (Onboarding, Split forms, Charts)
-    ├── hooks/                    # Custom React hooks (Wallet context management)
-    ├── lib/                      # SDK helpers and smart contract wrappers
-    └── pages/                    # Frontend page entrypoints and dashboards
+VeilSplits/
+├── contracts/
+│   ├── bill-registry/            # Contract managing bill hashes & settlement
+│   └── stealth-pay/              # Contract managing stealth address derivation
+├── docs/                         # Pitch deck, user data, and architecture docs
+└── frontend/src/                 # React application frontend source
 ```
 
 ## License
