@@ -96,7 +96,7 @@ We onboarded 18 real users (from the Stellar Discord community, developer friend
 - 4/18 found the wallet connect + bill creation slightly confusing or slow — noted for improvement in Level 5
 - 15/18 said they would definitely use VeilSplit for real recurring bills
 
-Full raw responses available in [docs/feedback-responses.csv](docs/feedback-responses.csv)
+Full raw responses are available in [docs/feedback-responses.csv](docs/feedback-responses.csv) and in the [Live Google Sheet](https://docs.google.com/spreadsheets/d/1QvghrK4DkvvLlfIHrZ1E5i2Whv8TqjupJxEyb49UW30/edit?usp=sharing).
 
 ## Getting Started (Setup Instructions)
 
