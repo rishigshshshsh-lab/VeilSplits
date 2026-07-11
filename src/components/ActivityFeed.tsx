@@ -19,9 +19,41 @@ export const ActivityFeed = () => {
       setError(null);
       
       const res = await getRecentEvents();
-      setEvents(res.events);
+      
+      // Load simulated events from localStorage
+      let simulatedList: SorobanEvent[] = [];
+      try {
+        const stored = localStorage.getItem('veilsplit_simulated_events');
+        if (stored) {
+          simulatedList = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.warn('Failed to parse simulated events:', e);
+      }
+
+      // Merge on-chain and simulated events, sorting simulated ones first
+      const mergedEvents = [...simulatedList, ...res.events].sort((a, b) => {
+        const parseTime = (id: string) => {
+          if (id.startsWith('sim-')) {
+            const parts = id.split('-');
+            return parseInt(parts[1]) || 0;
+          }
+          return 0;
+        };
+        
+        const timeA = parseTime(a.id);
+        const timeB = parseTime(b.id);
+        
+        if (timeA && timeB) return timeB - timeA;
+        if (timeA) return -1;
+        if (timeB) return 1;
+        
+        return b.id.localeCompare(a.id);
+      });
+
+      setEvents(mergedEvents);
       cursorRef.current = res.cursor;
-      startLedgerRef.current = res.latestLedger - 100; // Look back slightly if needed, or stick to response
+      startLedgerRef.current = res.latestLedger - 100;
       setIsStreaming(true);
     } catch (err: any) {
       console.error('Failed to connect to Soroban event stream:', err);
@@ -34,10 +66,23 @@ export const ActivityFeed = () => {
   useEffect(() => {
     fetchInitialEvents();
 
+    const handleNewEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<SorobanEvent>;
+      if (customEvent.detail) {
+        setEvents((prev) => {
+          if (prev.some((ev) => ev.id === customEvent.detail.id)) return prev;
+          return [customEvent.detail, ...prev];
+        });
+      }
+    };
+
+    window.addEventListener('veilsplit_new_event', handleNewEvent);
+
     return () => {
       if (pollTimerRef.current) {
         clearInterval(pollTimerRef.current);
       }
+      window.removeEventListener('veilsplit_new_event', handleNewEvent);
     };
   }, []);
 

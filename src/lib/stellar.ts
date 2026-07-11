@@ -242,6 +242,9 @@ export const createPrivateBillOnChain = async (
   // Simulate network delay
   await new Promise(res => setTimeout(res, 1500));
   
+  // Generate a unique bill ID for this session
+  const billId = `pv-${Math.random().toString(36).substring(2, 8)}`;
+  
   // In a fully deployed environment, this would call executeContractCall to `create_bill` on the new VeilSplit registry.
   // For the MVP UI, we simulate returning the generated stealth addresses (hashed commitments).
   const stealthAddresses = recipients.map(rec => {
@@ -250,6 +253,31 @@ export const createPrivateBillOnChain = async (
     crypto.getRandomValues(hashBuffer);
     return Array.from(hashBuffer).map(b => b.toString(16).padStart(2, '0')).join('');
   });
+
+  // Generate simulated on-chain event for the private bill
+  const totalStroops = Math.round(parseFloat(totalAmount) * 10000000);
+  const simulatedEvent = {
+    id: `sim-${Date.now()}-${Math.random()}`,
+    type: 'split_created' as const,
+    billId,
+    topic: ['split_created', billId],
+    value: [sender, totalStroops.toString()],
+    txHash: `0x${Array.from(crypto.getRandomValues(new Uint8Array(32))).map(b => b.toString(16).padStart(2, '0')).join('')}`,
+    pagingToken: `sim-${Date.now()}`,
+    isSimulated: true
+  };
+
+  try {
+    const existing = localStorage.getItem('veilsplit_simulated_events');
+    const list = existing ? JSON.parse(existing) : [];
+    list.push(simulatedEvent);
+    localStorage.setItem('veilsplit_simulated_events', JSON.stringify(list));
+    
+    // Dispatch custom event to update ActivityFeed in real time
+    window.dispatchEvent(new CustomEvent('veilsplit_new_event', { detail: simulatedEvent }));
+  } catch (e) {
+    console.error('Failed to save simulated event:', e);
+  }
   
   return stealthAddresses;
 };

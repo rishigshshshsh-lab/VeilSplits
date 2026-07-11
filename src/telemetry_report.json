@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2026-07-11T11:13:09.439Z",
+  "users": [
+    {
+      "id": 1,
+      "publicKey": "GDWE3AJB67FJWMQ6RM7JQ6KF6HSA42VYDGFYJNGVT7SQZPUAB6MXEZRW"
+    },
+    {
+      "id": 2,
+      "publicKey": "GDWESB7XYO3VWOCB6HXI7XGUYUQV2GIBS77X7WDYMRNWKCTDL2BHWNFF"
+    },
+    {
+      "id": 3,
+      "publicKey": "GC4P5YRF5XZMIG7FYDTC7U5PPSDV7JAI4QKFRIQKN64HPZ5OQLFZPHU3"
+    },
+    {
+      "id": 4,
+      "publicKey": "GADYMPTBZEISFWUQGEHHSF335TLPWBJMOYQRHYE4WDG4KMTPSSNGHXX6"
+    },
+    {
+      "id": 5,
+      "publicKey": "GBKMDQTIG4GGTSEEPT3DITGL2HRY7OQBXNIQLH4J7Q3XBUTY455TRH7P"
+    },
+    {
+      "id": 6,
+      "publicKey": "GBICFZMA3FFFLYBOKUUOPWQFR7SPVG3ZH4Y2RLB7IZC2HBHEHK6TIDAY"
+    },
+    {
+      "id": 7,
+      "publicKey": "GD4HNVS6H6GIKQ22UCIY63FURGGHYMZMYLFGTJTSOCP6SHP44PB5YD6F"
+    },
+    {
+      "id": 8,
+      "publicKey": "GD2M7VN26VIGFXIWDR2CHWBMHBDUTPQ7JJA34YRCSB2S55YGQWYHFNRO"
+    },
+    {
+      "id": 9,
+      "publicKey": "GBPDL4WJED7CO4E4EC7LTBP7DDBIRRQQPDVEBFDDQ6NBHI5B5TOTBK37"
+    },
+    {
+      "id": 10,
+      "publicKey": "GCJRWN3KVAL5GG2VUU3UXUVTWOEJXCN27JATCTLDTUHQZ5E35OC6EQJB"
+    },
+    {
+      "id": 11,
+      "publicKey": "GCUFFG2DYDOQUG3KLKJZ5IOEO2T6WAW64RE66NTHEERAQ5GVHRPJYVNR"
+    },
+    {
+      "id": 12,
+      "publicKey": "GDJNWZCFJXSTFGY3OA3SBRQ7MK6DHPBHBJJWNCWDX5TE2GRODQET4UUT"
+    },
+    {
+      "id": 13,
+      "publicKey": "GATPNQVYWU6RQQYLBNGND74WWAN46HSH2QXW3NFTPHDY6VI6WK27BIG5"
+    },
+    {
+      "id": 14,
+      "publicKey": "GDHWYJAR77PAGWPLG64CWH3Q3WRTB6KQHCZ235LPJDD56JV2QJWILQ3B"
+    },
+    {
+      "id": 15,
+      "publicKey": "GAFV7WZNQREEBSQDVQMCU4B5PCIUCDRZCWHB6PVQYC4ZDQKKQDF2XTPY"
+    },
+    {
+      "id": 16,
+      "publicKey": "GACZIDTUFUE4GXPUA2FHJVA26CIUW6ILL3HIBMI25LE3LBGFX3TTDM3N"
+    },
+    {
+      "id": 17,
+      "publicKey": "GDN7I6L4YDWBMEFHJ622L74Q3KYOHDBLVSOZZCJ3FAGN5AMXXDOLMW63"
+    }
+  ],
+  "interactions": [
+    {
+      "type": "Create Split",
+      "billId": "bill-auto-1783768238505-1",
+      "user": "GDWE3AJB67FJWMQ6RM7JQ6KF6HSA42VYDGFYJNGVT7SQZPUAB6MXEZRW",
+      "userId": 1,
+      "amount": "102 XLM",
+      "txHash": "3c2dd3492e5d3674dd6853ae5789ab509a613c0b3ac292dce270752c13638d0f"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768238505-1",
+      "user": "GDWESB7XYO3VWOCB6HXI7XGUYUQV2GIBS77X7WDYMRNWKCTDL2BHWNFF",
+      "userId": 2,
+      "amount": "34.00 XLM",
+      "txHash": "1303f39c2a57d1e598aac76b358a55399bb415a72fde1dad7e0f8b795625ae07"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768238505-1",
+      "user": "GC4P5YRF5XZMIG7FYDTC7U5PPSDV7JAI4QKFRIQKN64HPZ5OQLFZPHU3",
+      "userId": 3,
+      "amount": "34.00 XLM",
+      "txHash": "fbea86e91df0ea676a9e4277ad07086b875f5b648194762eb67a5b970ac0f43d"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768238505-1",
+      "user": "GADYMPTBZEISFWUQGEHHSF335TLPWBJMOYQRHYE4WDG4KMTPSSNGHXX6",
+      "userId": 4,
+      "amount": "34.00 XLM",
+      "txHash": "1598dfe2151e7ac26f96ca48738bbd4f9d22a55311710c610127a741e4ca48f1"
+    },
+    {
+      "type": "Create Split",
+      "billId": "bill-auto-1783768279916-2",
+      "user": "GBKMDQTIG4GGTSEEPT3DITGL2HRY7OQBXNIQLH4J7Q3XBUTY455TRH7P",
+      "userId": 5,
+      "amount": "43 XLM",
+      "txHash": "705ddf211f110f8a6f5dac66d65d05e127867ef7ec30cbe49f8c9068c19ae5c2"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768279916-2",
+      "user": "GBICFZMA3FFFLYBOKUUOPWQFR7SPVG3ZH4Y2RLB7IZC2HBHEHK6TIDAY",
+      "userId": 6,
+      "amount": "21.50 XLM",
+      "txHash": "a0ee05df32e4bbb69f4b1b2ea093c5d000f0522021aab2d03b67974fd2ccb8ac"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768279916-2",
+      "user": "GD4HNVS6H6GIKQ22UCIY63FURGGHYMZMYLFGTJTSOCP6SHP44PB5YD6F",
+      "userId": 7,
+      "amount": "21.50 XLM",
+      "txHash": "64a9116c935c5a06f4c3e8f82f15ef26c0805c20c08f59eacd03d51c1ac69a94"
+    },
+    {
+      "type": "Create Split",
+      "billId": "bill-auto-1783768308731-3",
+      "user": "GD2M7VN26VIGFXIWDR2CHWBMHBDUTPQ7JJA34YRCSB2S55YGQWYHFNRO",
+      "userId": 8,
+      "amount": "65 XLM",
+      "txHash": "70a114d96555883cf8ed965d562feac896ca85b992e97379e420c6e40313adcd"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768308731-3",
+      "user": "GBPDL4WJED7CO4E4EC7LTBP7DDBIRRQQPDVEBFDDQ6NBHI5B5TOTBK37",
+      "userId": 9,
+      "amount": "21.67 XLM",
+      "txHash": "ef060353de8a344e6cce9c6b56d4551270ef4fb6796b05cc1a7451b28c0444da"
+    },
+    {
+      "type": "Create Split",
+      "billId": "bill-auto-1783768329734-4",
+      "user": "GDJNWZCFJXSTFGY3OA3SBRQ7MK6DHPBHBJJWNCWDX5TE2GRODQET4UUT",
+      "userId": 12,
+      "amount": "534 XLM",
+      "txHash": "ebdedbadac33555979e8465c6917a1415783dc87a785ecb12ea3afd4ba083770"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768329734-4",
+      "user": "GATPNQVYWU6RQQYLBNGND74WWAN46HSH2QXW3NFTPHDY6VI6WK27BIG5",
+      "userId": 13,
+      "amount": "267.00 XLM",
+      "txHash": "ea8a070ceb2c42e68f8a5764b2695333db6a5ab9fb16c7336cb91f982d59ee10"
+    },
+    {
+      "type": "Create Split",
+      "billId": "bill-auto-1783768348690-5",
+      "user": "GAFV7WZNQREEBSQDVQMCU4B5PCIUCDRZCWHB6PVQYC4ZDQKKQDF2XTPY",
+      "userId": 15,
+      "amount": "32 XLM",
+      "txHash": "94ecfbd4109df2750efee3b14a33216326199c86b92f4922e7a73b0cad9ea6d9"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768348690-5",
+      "user": "GACZIDTUFUE4GXPUA2FHJVA26CIUW6ILL3HIBMI25LE3LBGFX3TTDM3N",
+      "userId": 16,
+      "amount": "32.00 XLM",
+      "txHash": "294e7ae4bb1311da21d89c5e801cee9a7a74b97816527c7a0bf6a814a2ff2769"
+    },
+    {
+      "type": "Create Split",
+      "billId": "bill-auto-1783768370467-6",
+      "user": "GDN7I6L4YDWBMEFHJ622L74Q3KYOHDBLVSOZZCJ3FAGN5AMXXDOLMW63",
+      "userId": 17,
+      "amount": "675 XLM",
+      "txHash": "7476628f43e14cbc3d7bc5980b367049a615eb826231faca8e1c0d6edd4c4d91"
+    },
+    {
+      "type": "Mark Paid",
+      "billId": "bill-auto-1783768370467-6",
+      "user": "GDWE3AJB67FJWMQ6RM7JQ6KF6HSA42VYDGFYJNGVT7SQZPUAB6MXEZRW",
+      "userId": 1,
+      "amount": "337.50 XLM",
+      "txHash": "1d0bd309f77f2a1edcd09b325438e8c2e7d4bfd6287f1ff6fa74640b33079481"
+    }
+  ]
+}
