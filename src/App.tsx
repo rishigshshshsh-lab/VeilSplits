@@ -238,6 +238,40 @@ function App() {
           <p>
             Split expenses and settle up on the Stellar Testnet without linking repeated payments, backed by a Soroban registry with one-time stealth addresses.
           </p>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1rem',
+            marginTop: '1.5rem',
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            padding: '0.75rem 1.5rem',
+            borderRadius: '12px',
+            maxWidth: '600px',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Share VeilSplit:</span>
+            <a
+              href="https://twitter.com/intent/tweet?text=I'm using VeilSplit to settle recurring shared bills privately on Stellar! No more exposing my wallet transaction history on-chain. Try it here: https://github.com/rishigshshshsh-lab/VeilSplits"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              style={{ padding: '0.35rem 0.75rem', fontSize: '0.85rem', background: 'rgba(29, 161, 242, 0.1)', color: '#1da1f2', borderColor: 'rgba(29, 161, 242, 0.2)', textDecoration: 'none' }}
+            >
+              Twitter
+            </a>
+            <a
+              href="https://api.whatsapp.com/send?text=Check out VeilSplit - Privacy-first bill splitting protocol on Stellar! Try it here: https://github.com/rishigshshshsh-lab/VeilSplits"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              style={{ padding: '0.35rem 0.75rem', fontSize: '0.85rem', background: 'rgba(37, 211, 102, 0.1)', color: '#25d366', borderColor: 'rgba(37, 211, 102, 0.2)', textDecoration: 'none' }}
+            >
+              WhatsApp
+            </a>
+          </div>
         </div>
 
         {showProgress ? (
