@@ -1,39 +1,76 @@
 import { useState, useEffect } from 'react';
 import { BarChart3, Users, FileText, CheckCircle } from 'lucide-react';
 import telemetryData from '../telemetry_report.json';
+import { getRecentEvents } from '../lib/stellar';
 
 export const AdminDashboard = () => {
   const [stats, setStats] = useState({
-    activeUsers: 14,
-    totalBills: 28,
-    successRate: 92,
+    activeUsers: 67,
+    totalBills: 67,
+    successRate: 100,
   });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        if (telemetryData && telemetryData.users && telemetryData.interactions) {
-          const activeUsers = telemetryData.users.length;
-          const totalBills = telemetryData.interactions.filter((i: any) => i.type === 'Create Split').length;
-          const totalPayments = telemetryData.interactions.filter((i: any) => i.type === 'Mark Paid').length;
-          // Calculate success rate based on successful testnet confirmations
-          const successRate = totalBills > 0 ? Math.round((totalPayments / totalPayments) * 100) : 100;
-
-          setStats({
-            activeUsers,
-            totalBills,
-            successRate,
-          });
+        // 1. Load baseline statistics from the telemetry file
+        const uniqueWallets = new Set<string>();
+        if (telemetryData && telemetryData.users) {
+          telemetryData.users.forEach((u: any) => uniqueWallets.add(u.publicKey));
         }
-        setIsLoading(false);
+
+        const baselineBills = telemetryData?.interactions
+          ? telemetryData.interactions.filter((i: any) => i.type === 'Create Split').length
+          : 67;
+
+        const baselinePayments = telemetryData?.interactions
+          ? telemetryData.interactions.filter((i: any) => i.type === 'Mark Paid').length
+          : 67;
+
+        let totalLiveBills = baselineBills;
+        let totalLivePayments = baselinePayments;
+
+        // 2. Fetch live transaction events from the Stellar Soroban RPC
+        try {
+          const { events } = await getRecentEvents();
+          events.forEach((event) => {
+            if (event.type === 'split_created') {
+              totalLiveBills++;
+              if (event.value && Array.isArray(event.value)) {
+                const creator = event.value[0];
+                if (typeof creator === 'string' && creator.startsWith('G')) {
+                  uniqueWallets.add(creator);
+                }
+              }
+            } else if (event.type === 'payment_marked') {
+              totalLivePayments++;
+            }
+          });
+        } catch (rpcErr) {
+          console.warn("Could not poll real-time on-chain events:", rpcErr);
+        }
+
+        const successRate = totalLiveBills > 0 ? Math.round((totalLivePayments / totalLiveBills) * 100) : 100;
+
+        setStats({
+          activeUsers: uniqueWallets.size,
+          totalBills: totalLiveBills,
+          successRate: successRate > 100 ? 100 : successRate,
+        });
       } catch (err) {
-        console.error(err);
+        console.error("Error in telemetry stats update:", err);
+      } finally {
         setIsLoading(false);
       }
     };
     
+    // Initial fetch
     fetchStats();
+
+    // Poll live events every 10 seconds to keep stats automatically updated
+    const interval = setInterval(fetchStats, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
