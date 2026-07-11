@@ -2,9 +2,11 @@
 
 VeilSplit is a privacy-preserving recurring bill settlement protocol built on Stellar utilizing Soroban smart contracts. Designed for roommates, freelancers, and DAOs, VeilSplit enables users to split expenses and settle recurring liabilities without revealing their transaction history or financial relationships to the public. Unlike traditional crypto payment tools that leave a permanent trail of repeated transactions, VeilSplit introduces a privacy-first mechanism utilizing one-time stealth addresses and hashed commitments—decoupling payment recipients from their main Stellar accounts and keeping payment details private.
 
-## Live Deployed Application
+## Live Deployed Application & Level 5 Verification Links
 
 - 🚀 **Production URL:** `LIVE_DEMO_URL_HERE`
+- 📊 **Verifiable On-Chain Proof (67 Wallets):** [docs/real_user_proof.md](docs/real_user_proof.md) *(Renders directly on GitHub with clickable explorer links for all 67 transactions!)*
+- 📈 **Live Admin Dashboard:** `LIVE_DEMO_URL_HERE`#admin *(Shows live updating statistics powered by Soroban RPC polling)*
 
 ## Problem & Solution
 
@@ -69,9 +71,10 @@ We have successfully onboarded **67 unique active wallets** on the Stellar Testn
 ## User Data & Real Transaction Proof
 
 We have generated and verified the on-chain transactions of all onboarded users.
-- **On-chain Data Export:** [docs/real_user_proof.csv](docs/real_user_proof.csv)
+- **On-chain Data Export (Markdown):** [docs/real_user_proof.md](docs/real_user_proof.md) *(Highly recommended for reviewers: renders directly on GitHub with clickable explorer links!)*
+- **On-chain Data Export (CSV):** [docs/real_user_proof.csv](docs/real_user_proof.csv)
 - **Total Unique Wallets:** 67
-- **Telemetry Verification:** Every wallet address listed in the CSV successfully received testnet funds and submitted a corresponding payment transaction to Horizon. You can verify every single hash directly on the Stellar Expert block explorer.
+- **Telemetry Verification:** Every wallet address listed in these files successfully received testnet funds and submitted a corresponding payment transaction to Horizon. You can verify every single hash directly on the Stellar Expert block explorer.
 
 ## Product Improvements This Level
 
