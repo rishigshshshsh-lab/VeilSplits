@@ -162,8 +162,6 @@ If you want to build and deploy your own instances of the Soroban contracts on t
 
 ```text
 VeilSplit/
-├── /.github/
-│   └── workflows/                # CI/CD pipeline and automated test workflows
 ├── /contracts/                   # Soroban Rust smart contracts
 │   ├── bill-registry/            # Contract managing bill hashes & settlement lifecycles
 │   └── stealth-pay/              # Contract managing stealth address derivation & verification
