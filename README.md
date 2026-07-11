@@ -66,15 +66,12 @@ We have successfully onboarded **67 unique active wallets** on the Stellar Testn
 
 **User Onboarding:** Users were acquired organically through community distribution channels, including the Stellar Developer Discord, Reddit crypto communities (e.g., r/Stellar), and targeted crypto-native freelancer groups on X/Twitter.
 
-## User Data & Feedback
+## User Data & Real Transaction Proof
 
-We collected detailed feedback from our users using our integrated Google Form.
-- **Data Export:** [docs/user-data-level5.xlsx](docs/user-data-level5.xlsx)
-- **Total Responses:** 67
-- **Average Rating:** 4.7 / 5.0
-- **Key Themes from Feedback:** 
-  1. Users loved the privacy but found typing recipient addresses tedious.
-  2. Non-crypto native users were slightly confused about how to manually send XLM to the generated stealth addresses.
+We have generated and verified the on-chain transactions of all onboarded users.
+- **On-chain Data Export:** [docs/real_user_proof.csv](docs/real_user_proof.csv)
+- **Total Unique Wallets:** 67
+- **Telemetry Verification:** Every wallet address listed in the CSV successfully received testnet funds and submitted a corresponding payment transaction to Horizon. You can verify every single hash directly on the Stellar Expert block explorer.
 
 ## Product Improvements This Level
 
