@@ -237,7 +237,7 @@ export const createPrivateBillOnChain = async (
   sender: string,
   recipients: string[],
   totalAmount: string,
-  isRecurring: boolean
+  _isRecurring: boolean
 ): Promise<string[]> => {
   // Simulate network delay
   await new Promise(res => setTimeout(res, 1500));
@@ -247,7 +247,7 @@ export const createPrivateBillOnChain = async (
   
   // In a fully deployed environment, this would call executeContractCall to `create_bill` on the new VeilSplit registry.
   // For the MVP UI, we simulate returning the generated stealth addresses (hashed commitments).
-  const stealthAddresses = recipients.map(rec => {
+  const stealthAddresses = recipients.map(_rec => {
     // Generate a pseudo-random hash to represent the stealth address
     const hashBuffer = new Uint8Array(32);
     crypto.getRandomValues(hashBuffer);
@@ -360,7 +360,7 @@ export const getRecentEvents = async (
     
     const parsedEvents = (response.events || [])
       .map(parseSorobanEvent)
-      .filter((ev): ev is SorobanEvent => ev !== null);
+      .filter((ev: SorobanEvent | null): ev is SorobanEvent => ev !== null);
       
     const nextCursor = response.cursor || cursor;
 

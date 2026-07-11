@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Send, Users, Coins, Shield, RefreshCw } from 'lucide-react';
 import { isValidPublicKey } from '../lib/stellar';
 import { useToast } from './Toast';
-import { Skeleton } from './Skeletons';
 
 interface CreateBillProps {
   senderAddress: string | null;

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BarChart3, Users, FileText, CheckCircle } from 'lucide-react';
-import { getRecentEvents } from '../lib/stellar';
 import telemetryData from '../telemetry_report.json';
 
 export const AdminDashboard = () => {
