@@ -1,7 +1,37 @@
 import React, { useState } from 'react';
-import { Send, Users, Coins, Shield, RefreshCw } from 'lucide-react';
+import { Send, Users, Coins, Shield, RefreshCw, Copy, Check } from 'lucide-react';
 import { isValidPublicKey } from '../lib/stellar';
 import { useToast } from './Toast';
+
+const CopyButton: React.FC<{ text: string }> = ({ text }) => {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <button
+      onClick={handleCopy}
+      style={{
+        background: 'rgba(255,255,255,0.05)',
+        border: '1px solid rgba(255,255,255,0.1)',
+        color: copied ? 'var(--success)' : 'var(--text-secondary)',
+        cursor: 'pointer',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0.35rem',
+        borderRadius: '6px',
+        marginLeft: '0.5rem',
+        flexShrink: 0
+      }}
+      title="Copy stealth address"
+    >
+      {copied ? <Check size={14} /> : <Copy size={14} />}
+    </button>
+  );
+};
 
 interface CreateBillProps {
   senderAddress: string | null;
@@ -76,8 +106,11 @@ export const CreateBill: React.FC<CreateBillProps> = ({
           {stealthAddresses.map((s, idx) => (
             <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Participant {idx + 1} ({s.recipient.substring(0,6)}...{s.recipient.substring(50)})</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', color: 'var(--primary)', wordBreak: 'break-all' }}>
-                {s.address}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', color: 'var(--primary)', wordBreak: 'break-all' }}>
+                  {s.address}
+                </span>
+                <CopyButton text={s.address} />
               </div>
             </div>
           ))}
