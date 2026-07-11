@@ -60,10 +60,7 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '1rem' }}>
           <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>XLM Balance</span>
           {loadingBalance ? (
-            <div className="flex items-center gap-2">
-              <div className="spinner" style={{ width: '1.2rem', height: '1.2rem', borderWidth: '2px' }}></div>
-              <span style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-muted)' }}>Loading...</span>
-            </div>
+            <div className="skeleton" style={{ height: '2.5rem', width: '150px', borderRadius: '8px' }}></div>
           ) : error ? (
             <span style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--error)' }}>0.00 XLM</span>
           ) : (
