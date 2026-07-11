@@ -364,7 +364,7 @@ function App() {
         <div className="glowing-wrapper" style={{ marginTop: '2rem' }}>
           <div className="glowing-glow"></div>
           <div className="glowing-content">
-            <ActivityFeed />
+            <ActivityFeed connectedAddress={address} />
           </div>
         </div>
       </main>

@@ -3,11 +3,16 @@ import { getRecentEvents } from '../lib/stellar';
 import type { SorobanEvent } from '../lib/stellar';
 import { Activity, RefreshCw, CheckCircle2, FileText, Ban, Sparkles, UserPlus } from 'lucide-react';
 
-export const ActivityFeed = () => {
+interface ActivityFeedProps {
+  connectedAddress?: string | null;
+}
+
+export const ActivityFeed: React.FC<ActivityFeedProps> = ({ connectedAddress }) => {
   const [events, setEvents] = useState<SorobanEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [activeTab, setActiveTab] = useState<'all' | 'mine'>('all');
   
   const startLedgerRef = useRef<number | undefined>(undefined);
   const cursorRef = useRef<string | undefined>(undefined);
@@ -186,12 +191,61 @@ export const ActivityFeed = () => {
     }
   };
 
+  const myEvents = events.filter((ev) => {
+    if (!connectedAddress) return false;
+    if (ev.type === 'split_created') {
+      const creator = Array.isArray(ev.value) ? ev.value[0]?.toString() : '';
+      return creator.toLowerCase() === connectedAddress.toLowerCase();
+    }
+    return false;
+  }).slice(0, 5);
+
+  const displayedEvents = activeTab === 'all' ? events : myEvents;
+
   return (
     <div className="card w-full" style={{ marginTop: '2rem' }}>
-      <div className="feed-header">
-        <div className="feed-title">
-          <Activity size={20} className="text-purple-400" />
-          On-Chain Activity Feed
+      <div className="feed-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div className="feed-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '1.1rem' }}>
+            <Activity size={20} className="text-purple-400" />
+            Activity Log
+          </div>
+          {connectedAddress && (
+            <div style={{ display: 'flex', background: 'rgba(255,255,255,0.03)', padding: '2px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <button
+                type="button"
+                onClick={() => setActiveTab('all')}
+                style={{
+                  padding: '0.25rem 0.75rem',
+                  fontSize: '0.8rem',
+                  borderRadius: '6px',
+                  border: 'none',
+                  background: activeTab === 'all' ? 'var(--primary)' : 'transparent',
+                  color: activeTab === 'all' ? 'white' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  fontWeight: activeTab === 'all' ? 600 : 400
+                }}
+              >
+                All Activity
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('mine')}
+                style={{
+                  padding: '0.25rem 0.75rem',
+                  fontSize: '0.8rem',
+                  borderRadius: '6px',
+                  border: 'none',
+                  background: activeTab === 'mine' ? 'var(--primary)' : 'transparent',
+                  color: activeTab === 'mine' ? 'white' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  fontWeight: activeTab === 'mine' ? 600 : 400
+                }}
+              >
+                My Bills (Last 5)
+              </button>
+            </div>
+          )}
         </div>
         
         {loading ? (
@@ -228,13 +282,23 @@ export const ActivityFeed = () => {
         <div className="alert alert-error" style={{ margin: 0 }}>
           <p>{error}</p>
         </div>
-      ) : events.length === 0 ? (
-        <div className="text-center text-muted" style={{ padding: '2rem 0' }}>
-          No recent on-chain events found. Create a split bill to see activity.
-        </div>
+      ) : displayedEvents.length === 0 ? (
+        activeTab === 'mine' ? (
+          <div style={{ textAlign: 'center', padding: '3rem 1.5rem', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.08)' }}>
+            <FileText size={40} style={{ color: 'var(--text-muted)', marginBottom: '1rem', opacity: 0.5 }} />
+            <h4 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.25rem' }}>No bills created yet</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', maxWidth: '350px', margin: '0 auto' }}>
+              Settle recurring rent or splits with roommates by creating your first private bill above!
+            </p>
+          </div>
+        ) : (
+          <div className="text-center text-muted" style={{ padding: '2rem 0' }}>
+            No recent on-chain events found. Create a split bill to see activity.
+          </div>
+        )
       ) : (
         <div className="activity-feed" style={{ maxHeight: '350px', overflowY: 'auto', paddingRight: '0.5rem' }}>
-          {events.map((ev) => (
+          {displayedEvents.map((ev) => (
             <div key={ev.id} className={`activity-item type-${ev.type}`}>
               <div className="activity-icon">
                 {getEventIcon(ev.type)}
