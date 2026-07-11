@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Wallet, Coins, Check, Copy } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Wallet, Coins, Check, Copy, Sun, Moon } from 'lucide-react';
 
 interface HeaderProps {
   address: string | null;
@@ -15,6 +15,22 @@ export const Header: React.FC<HeaderProps> = ({
   isConnecting,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('theme-light');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.remove('theme-light');
+      localStorage.setItem('theme', 'dark');
+    }
+  }, [theme]);
 
   const shortenAddress = (addr: string) => {
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
@@ -52,6 +68,26 @@ export const Header: React.FC<HeaderProps> = ({
           <span className="pulse-badge" style={{ padding: '0.35rem 0.75rem', fontWeight: 600, background: 'rgba(245, 158, 11, 0.1)', color: '#fbbf24', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
             Stellar Testnet
           </span>
+
+          <button
+            onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
+            className="btn btn-secondary"
+            style={{
+              padding: '0.5rem',
+              height: '2.25rem',
+              width: '2.25rem',
+              background: 'rgba(255,255,255,0.04)',
+              borderColor: 'rgba(255,255,255,0.06)',
+              borderRadius: '0.5rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+          >
+            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+          </button>
 
           {address ? (
             <div className="flex items-center gap-2">
