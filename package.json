@@ -17,7 +17,8 @@
     "@stellar/stellar-sdk": "^16.0.1",
     "lucide-react": "^1.23.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@exodus/bytes": "^1.15.1",
