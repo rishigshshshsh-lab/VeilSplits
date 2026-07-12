@@ -4,9 +4,9 @@ VeilSplit is a privacy-preserving recurring bill settlement protocol built on St
 
 ## Live Deployed Application & Level 5 Verification Links
 
-- 🚀 **Production URL:** `LIVE_DEMO_URL_HERE`
+- 🚀 **Production URL:** [veil-splits.vercel.app](https://veil-splits.vercel.app/)
 - 📊 **Verifiable On-Chain Proof (67 Wallets):** [docs/real_user_proof.md](docs/real_user_proof.md) *(Copy and verify transaction hashes directly on the Stellar Testnet ledger)*
-- 📈 **Live Admin Dashboard:** `LIVE_DEMO_URL_HERE`#admin *(Shows live updating statistics powered by Soroban RPC polling)*
+- 📈 **Live Admin Dashboard:** [veil-splits.vercel.app/#admin](https://veil-splits.vercel.app/#admin) *(Shows live updating statistics powered by Soroban RPC polling)*
 
 ## Problem & Solution
 
