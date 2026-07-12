@@ -52,7 +52,7 @@ VeilSplit addresses these privacy vulnerabilities through two core mechanisms:
 
 ## Demo Video
 
-- 📹 **Demo Video:** `DEMO_VIDEO_LINK_HERE`
+- 📹 **Demo Video:** [Watch Demo Video](https://youtu.be/DfHIaewS0J0)
 
 ## Proof of 50+ Users
 
