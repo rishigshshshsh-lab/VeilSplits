@@ -310,7 +310,7 @@ export const ActivityFeed: React.FC<ActivityFeedProps> = ({ connectedAddress }) 
                   </span>
                   {ev.txHash && !ev.id.startsWith('sim-') ? (
                     <a
-                      href={`https://stellar.expert/testnet/tx/${ev.txHash}`}
+                      href={`https://stellar.expert/explorer/testnet/tx/${ev.txHash}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link-explorer text-sm"

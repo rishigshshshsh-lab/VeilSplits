@@ -39,7 +39,7 @@ for (let i = 1; i < lines.length; i++) {
   const amount = cleanMatches[amountIdx] || "0.0";
   
   if (wallet && txHash) {
-    const stellarLink = `https://stellar.expert/testnet/tx/${txHash}`;
+    const stellarLink = `https://stellar.expert/explorer/testnet/tx/${txHash}`;
     outputLines.push(`${wallet},${txHash},${amount},${stellarLink}`);
   }
 }

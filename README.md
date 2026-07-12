@@ -43,8 +43,8 @@ VeilSplit addresses these privacy vulnerabilities through two core mechanisms:
 
 | Contract Name | Testnet Address | Explorer Link |
 |---|---|---|
-| **BillRegistry** | `CONTRACT_ID_HERE` | [Stellar Expert](https://stellar.expert/testnet/contract/CONTRACT_ID_HERE) |
-| **StealthPay** | `CONTRACT_ID_HERE` | [Stellar Expert](https://stellar.expert/testnet/contract/CONTRACT_ID_HERE) |
+| **BillRegistry** | `CONTRACT_ID_HERE` | [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CONTRACT_ID_HERE) |
+| **StealthPay** | `CONTRACT_ID_HERE` | [Stellar Expert](https://stellar.expert/explorer/testnet/contract/CONTRACT_ID_HERE) |
 
 ## Pitch Deck
 

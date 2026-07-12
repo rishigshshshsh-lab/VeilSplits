@@ -228,7 +228,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
           <div style={{ display: 'flex', alignItems: 'center', marginTop: '0.5rem', fontSize: '0.85rem' }}>
             <span style={{ color: 'var(--text-muted)' }}>Transaction:</span>
             <a
-              href={`https://stellar.expert/testnet/tx/${createSplit.txHash}`}
+              href={`https://stellar.expert/explorer/testnet/tx/${createSplit.txHash}`}
               target="_blank"
               rel="noopener noreferrer"
               className="link-explorer"
@@ -279,7 +279,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
                     {getStatusBadge(participant.paymentStatus)}
                     {participant.paymentTxHash && (
                       <a
-                        href={`https://stellar.expert/testnet/tx/${participant.paymentTxHash}`}
+                        href={`https://stellar.expert/explorer/testnet/tx/${participant.paymentTxHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="link-explorer"
@@ -314,7 +314,7 @@ export const TransactionProgress: React.FC<TransactionProgressProps> = ({
                     {getStatusBadge(participant.markPaidStatus)}
                     {participant.markPaidTxHash && (
                       <a
-                        href={`https://stellar.expert/testnet/tx/${participant.markPaidTxHash}`}
+                        href={`https://stellar.expert/explorer/testnet/tx/${participant.markPaidTxHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="link-explorer"
