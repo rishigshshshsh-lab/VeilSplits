@@ -110,13 +110,13 @@ We scaled from our initial beta testers to 50+ unique users by distributing the 
 ## Screenshots
 
 - **Product UI:**
-  ![Product UI Screenshot](PRODUCT_UI_SCREENSHOT_URL_HERE)
+  ![Product UI Screenshot](image.png)
 
 - **Mobile Responsive View:**
-  ![Mobile Responsive UI Screenshot](MOBILE_UI_SCREENSHOT_URL_HERE)
+  ![Mobile Responsive UI Screenshot](image-1.png)
 
 - **Analytics Dashboard:**
-  ![Analytics Dashboard Screenshot](ANALYTICS_SCREENSHOT_URL_HERE)
+  ![Analytics Dashboard Screenshot](image-2.png)
 
 ## Next Phase Roadmap
 
